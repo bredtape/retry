@@ -8,6 +8,7 @@ import (
 )
 
 // exponential backoff with jitter and max duration
+// the duration doubles after each retry
 type Exp struct {
 	// step duration in nano seconds
 	step time.Duration
@@ -52,6 +53,7 @@ func (r Exp) Next(n int) time.Duration {
 
 func (r Exp) Try(ctx context.Context, f func() error) error {
 	n := 0
+
 	for {
 		err := f()
 		if err == nil {

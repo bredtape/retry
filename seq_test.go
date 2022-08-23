@@ -3,10 +3,27 @@ package retry
 import (
 	"context"
 	"errors"
+	"fmt"
 	"math"
 	"testing"
 	"time"
 )
+
+func ExampleSeq_Next() {
+	// new sequence with no jitter (to be able to match output in this example)
+	r := Must(NewSeq(0, 100*time.Millisecond, 1*time.Second, 2*time.Second))
+
+	fmt.Println(r.Next(0).String())
+	fmt.Println(r.Next(1).String())
+	fmt.Println(r.Next(2).String())
+	fmt.Println(r.Next(3).String())
+
+	// Output:
+	// 100ms
+	// 1s
+	// 2s
+	// 2s
+}
 
 func TestSeqNextNoJitter(t *testing.T) {
 	r, err := NewSeq(0, 100*time.Millisecond, 20*time.Second, 10*time.Second)

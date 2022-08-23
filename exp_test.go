@@ -3,10 +3,26 @@ package retry
 import (
 	"context"
 	"errors"
+	"fmt"
 	"math"
 	"testing"
 	"time"
 )
+
+func ExampleExp_Next() {
+	// new sequence with no jitter (to be able to match output in this example)
+	r := Must(NewExp(0, 300*time.Millisecond, 1*time.Second))
+
+	fmt.Println(r.Next(0).String())
+	fmt.Println(r.Next(1).String())
+	fmt.Println(r.Next(2).String())
+	fmt.Println(r.Next(3).String())
+
+	// Output:
+	// 300ms
+	// 600ms
+	// 1s
+}
 
 func TestExpNoJitter(t *testing.T) {
 
