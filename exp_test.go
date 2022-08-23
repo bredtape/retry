@@ -22,6 +22,7 @@ func ExampleExp_Next() {
 	// 300ms
 	// 600ms
 	// 1s
+	// 1s
 }
 
 func TestExpNoJitter(t *testing.T) {
