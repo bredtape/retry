@@ -28,7 +28,6 @@ func NewSeq(jitterRatio float64, xs ...time.Duration) (Seq, error) {
 		if x < 0 {
 			return seq, fmt.Errorf("duration must be positive")
 		}
-
 	}
 
 	return seq, validateJitter(jitterRatio)
