@@ -6,7 +6,7 @@ import (
 )
 
 type Retryer interface {
-	// caculate the duration for the n'th index (starts with 0)
+	// calculate the duration for the n'th index (starts with 0)
 	Next(n int) time.Duration
 
 	// keep trying the function f until it returns nil or the context has expired
