@@ -26,6 +26,5 @@ func withRandomJitter(ratio float64, d time.Duration) time.Duration {
 }
 
 func scaleDuration(factor float64, d time.Duration) time.Duration {
-	dn := float64(d.Nanoseconds())
-	return time.Duration(math.Round(dn*(factor))) * time.Nanosecond
+	return time.Duration(math.Round(float64(d.Nanoseconds())*factor)) * time.Nanosecond
 }
