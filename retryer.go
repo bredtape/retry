@@ -11,9 +11,10 @@ type Retryer interface {
 
 	// keep trying the function f until it returns nil or the context has expired
 	// this operation will block
+	// the returned error from this method will be nil or context.Err()
 	Try(context.Context, func() error) error
 
-	// maximum duration that can occur between attempts
+	// maximum duration that can occur between attempts, including jitter.
 	MaxDuration() time.Duration
 }
 
